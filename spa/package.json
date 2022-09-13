@@ -1,0 +1,22 @@
+{
+  "name": "spa",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "eslint": "^8.14.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.6.3"
+  },
+  "scripts": {
+    "prepare": "npm run build",
+    "clean": "rimraf service-worker.js* js/**/*.js js/**/*.js.map generated",
+    "prebuild": "cd ../schemas && json2ts -i **/*.json -o ../spa/generated/",
+    "build": "tsc --project js/tsconfig.json & tsc --project workers/tsconfig.json",
+    "postbuild": "./build-tools/precache.js > ./workers/precache.json",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC"
+}

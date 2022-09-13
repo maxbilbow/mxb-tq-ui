@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/PostMeta",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "author": {
+      "description": "Displayname of the user who submitted this   question",
+      "type": "string"
+    },
+    "created": {
+      "type": "integer"
+    },
+    "location": {
+      "$ref": "./LocationData.json"
+    }
+  },
+  "required": [
+    "id",
+    "author",
+    "created"
+  ],
+  "additionalProperties": false
+}

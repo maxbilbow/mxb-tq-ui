@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/UserRegistrationRequest",
+  "type": "object",
+  "properties": {
+    "data": {
+      "description": "Details of the user",
+      "allOf": [
+        {
+          "$ref": "./JsonApiResource.json"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "attributes": {
+              "$ref": "./UserRegistration.json"
+            }
+          },
+          "required": [
+            "attributes"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false
+}

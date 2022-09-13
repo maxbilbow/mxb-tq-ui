@@ -1,0 +1,44 @@
+#! /bin/bash
+
+# Run all static analysis and code tests on commit
+# Note: We still depende on the github workflow checks as this check does not account for unstaged changes 
+
+Red='\033[0;31m'
+Yellow='\033[0;33m'
+Green='\033[0;32m'
+On_Purple='\033[45m'
+NC='\033[0m' # No Color
+
+# Perform code analysis and get exit code
+ci/analyse.sh
+result=$?
+
+echo Result is $result
+
+# If analysis succeeded, continue with operation
+if [ $result -eq 0 ]; then
+    printf "${Green}OK${NC}"
+    exit 0
+fi
+
+# If analysis with any code other than 42, abort operation.
+if [ $result -ne 42 ]; then
+    printf "${Red}Will not proceed with git operation. Testing and Analysis failed${NC}"
+    exit 1
+fi
+
+# Exit code 42 means code coverage was not sufficient. 
+# For no real reason, I've decided to allow this on feature branches;
+# While it does not help to enforce TDD, it can be useful for developers
+# to be able to share unfinished code.
+
+printf "${Yellow}Checking branch${NC}\n"
+
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+if [[ "$BRANCH" == "main" ]]; then
+    printf "${Red}Code not good enough for master branch. Aborting...${NC}"
+    exit 1
+fi
+
+printf "${Yellow}Not master - we shall proceed despite issues${NC}\n"
+exit 0

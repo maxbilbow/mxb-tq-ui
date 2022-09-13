@@ -1,0 +1,27 @@
+/* POST META: This is the user, date section below questions and answers */
+
+.postMeta {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "location . auth";
+
+}
+
+.postMeta__date {
+    grid-area: date;
+}
+
+.postMeta__author {
+    grid-area: auth;
+    text-align: right;
+}
+
+.postMeta__location {
+    grid-area: location;
+}
+
+.postMeta {
+    grid-area: meta;
+}

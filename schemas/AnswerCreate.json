@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/AnswerCreate",
+  "type": "object",
+  "properties": {
+    "location": {
+      "$ref": "./LocationData.json"
+    },
+    "body": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

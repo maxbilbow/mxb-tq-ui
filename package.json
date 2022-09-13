@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "spa"
+  ],
+  "scripts": {
+    "prepare": "npm run build",
+    "clean": "rimraf api/generated",
+    "prebuild": "npm run clean",
+    "build": "cd schemas && json2ts -i **/*.json -o ../api/generated/",
+    "build-import-map": "chomp importmap.json"
+  },
+  "devDependencies": {
+    "json-schema-to-typescript": "^10.1.5",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "jsonschema": "^1.4.0"
+  }
+}

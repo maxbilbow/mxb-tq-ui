@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/Answer",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "./PostMeta.json"
+    },
+    {
+      "$ref": "./QuestionBody.json"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false
+    }
+  ],
+  "additionalProperties": false
+}

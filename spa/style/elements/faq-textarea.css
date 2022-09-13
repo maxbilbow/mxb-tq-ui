@@ -1,0 +1,9 @@
+faq-textarea {
+    display: grid;
+}
+
+faq-textarea pre[contenteditable] {   
+    display: inline-block;
+    overflow-x: auto;
+    font-family: droid-sans, verdana, arial, sans-serif;
+}

@@ -1,0 +1,23 @@
+/* ========== FOOTER ========== */
+
+footer {
+    margin: 0;
+    width: calc(100% - 20px);
+    bottom: 0;
+    text-align: center;
+    margin-top: auto;
+
+    position: fixed;
+    display: grid;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+footer p,
+footer span {
+    padding: .5em;
+    text-align: center;
+    margin: .5em;
+}

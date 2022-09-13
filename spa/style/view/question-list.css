@@ -1,0 +1,78 @@
+/* Define styles for question list on home page */
+
+#question-list .questionListItem {
+    padding: 0;
+
+}
+
+.questionListItem {
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    grid-template-rows: 1fr 3fr 1fr;
+    gap: 0;
+    grid-template-areas:
+        "status title"
+        "status smery"
+        "status meta";
+
+}
+
+.questionListItem>div {
+    padding: .5em;
+}
+
+.questionListItem__title {
+    grid-area: title;
+    background-color: var(--colorSecondaryVariant);
+    color: var(--colorOnSecondary);
+    text-overflow: ellipsis;
+}
+
+.questionListItem__summary {
+    grid-area: smery;
+    word-break: break-word;
+    text-overflow: ellipsis;
+}
+
+.questionListItem__status {
+    grid-area: status;
+    text-align: center;
+    
+    background-color: var(--colorBackground);
+    color: var(--colorOnBackground);
+
+}
+
+div.questionListItem__status {
+    padding-left: 0;
+}
+
+.questionListItem>.postMeta {
+    grid-area: meta;
+
+    background-color: var(--colorBackground);
+    color: var(--colorOnBackground);
+
+    border-bottom: .2em dashed var(--colorPrimary);
+}
+
+.questionListItem__status>* {
+    display: none;
+}
+
+.questionListItem--noAnswers .questionListItem__status>.noAnswersIcon,
+.questionListItem--hasAnswers .questionListItem__status>.hasAnswersIcon,
+.questionListItem--hasAnswers .questionListItem__status>.questionListItem__answerCount,
+.questionListItem--isResolved .questionListItem__status>.isResolvedIcon {
+    display: block;
+}
+
+
+.questionListItem:hover .questionListItem__title {
+    background-color: var(--colorPrimaryVariant);
+}
+
+.questionListItem:hover .questionListItem__status {
+    color: var(--colorPrimaryVariant);
+}
+

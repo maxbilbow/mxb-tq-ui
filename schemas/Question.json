@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/Question",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "./PostMeta.json"
+    },
+    {
+      "$ref": "./QuestionSummary.json"
+    },
+    {
+      "$ref": "./QuestionStats.json"
+    },
+    {
+      "$ref": "./QuestionBody.json"
+    },
+    {
+      "properties": {
+        "imageId": {
+          "type": "number"
+        },
+        "imageUrl": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  ],
+  "additionalProperties": false
+}

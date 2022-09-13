@@ -1,0 +1,12 @@
+faq-collection>ul {
+    padding-inline-start: inherit;
+}
+faq-collection>ul>li {
+    cursor: pointer;
+    background-color: var(--colorSurface);
+    /* box-shadow: 2px 2px 2px var(--dropshadow); */
+    margin-top: 1em;
+    padding: 1em;
+    list-style-type: none;
+    color: var(--colorOnSurface)
+}

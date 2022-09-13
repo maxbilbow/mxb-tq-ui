@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/QuestionUpdate",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "./QuestionBody.json"
+    },
+    {
+      "$ref": "./QuestionSummary.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": "string",
+          "format": "base64"
+        }
+      },
+      "additionalProperties": false
+    }
+  ],
+  "additionalProperties": false
+}

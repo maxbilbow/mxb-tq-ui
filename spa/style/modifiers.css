@@ -1,0 +1,8 @@
+.hidden {
+    display: none !important;
+}
+
+.hidden2 {
+    visibility: hidden !important;
+}
+

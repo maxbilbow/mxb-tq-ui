@@ -1,0 +1,18 @@
+/* == Free 3rd Party font icon library: https://icons8.com/line-awesome == */
+/* This style sheet is imported directly in index.html to help with caching and load times */
+/* @import url(./icons/css/line-awesome.min.css); */
+
+/* Import global colour variables (and media-specific overrides) */
+@import url(./theme/index.css);
+
+/* Import styles for standart and custom HTML elements */
+@import url(./elements/index.css);
+
+/* Import global layout styles for the application */
+@import url(./layout/index.css);
+
+/* Import view-specific styles */
+@import url(./view/index.css);
+
+/* Import and special modifiers and overrides */
+@import url(./modifiers.css);

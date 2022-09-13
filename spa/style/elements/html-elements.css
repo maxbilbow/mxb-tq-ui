@@ -1,0 +1,76 @@
+i {
+    font-size: x-large;
+}
+
+/* =========== FORM =========== */
+
+button, input[type="button"], input[type="submit"] , select {
+    cursor: pointer;
+}
+
+input:not([type]),
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea, 
+pre[role="textarea"],
+select {
+    font-size: 0.8em;
+    min-width: 240px;
+    border: none;
+    border-bottom: 1px solid var(--colorPrimary);
+    padding: 0.5em;
+    margin-top: 0.3em;
+    background-color: var(--inputBackground);
+    color: var(--inputForeground);
+}
+
+form label input:not(input[type="button"]):not(input[type="submit"]),form label textarea{
+    width: calc(100% - 1.2em);
+    margin: auto;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    min-height: 1.5rem;
+}
+
+textarea {
+    max-width: 100%;
+    width: 90%;
+    resize: vertical;
+    height: 10vw;
+}
+
+button, input[type="button"], input[type="submit"], input[type="file"]  {
+    padding: 0.8em 1.3em;
+    margin: 0.2em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.8em;
+    margin-top: 0.5em;
+}
+
+button, input[type="button"], input[type="submit"]  {
+    border: 0;
+    border-radius: 0.3em;
+    box-shadow: 2px 2px 2px var(--dropshadow);
+    display: inline-block;
+
+}
+
+button, input[type="button"] {
+    background-color: var(--colorPrimary);
+    color: var(--colorOnPrimary);
+}
+
+
+input[type="submit"] {
+    background-color: var(--colorSecondary);
+    color: var(--colorOnSecondary);
+}
+
+
+button:hover, input[type="button"]:hover, input[type="submit"]:hover  {
+    color: grey;
+    background-color: var(--colorSecondaryVariant);
+}
+

@@ -1,0 +1,16 @@
+.formActions {
+    text-align: right;
+    grid-column: 2;
+}
+
+form {
+    grid-area: auto;
+}
+
+form p {
+    margin-top: 1em;
+}
+
+form div {
+    margin-bottom: .5rem;
+}

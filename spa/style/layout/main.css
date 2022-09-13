@@ -1,0 +1,44 @@
+body,
+h1,
+p2,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: droid-sans, verdana, arial, sans-serif;
+    background-color: var(--colorBackground);
+    min-width: 200px;
+}
+
+/* =========== MAIN =========== */
+
+main {
+    margin: 1em;
+    margin-top: 1em;
+}
+
+main>article {
+    max-width: var(--articleMaxWidth);
+    margin: auto;
+}
+
+main>article>section {
+    background-color: var(--colorSurface);
+    box-shadow: 2px 2px 2px var(--dropshadow);
+    margin-top: 1em;
+    padding: 1em;
+    list-style-type: none;
+    color: var(--colorOnSurface)
+}
+
+
+main p {
+    font-size: 0.8em;
+    color: var(--colorOnBackground);
+}
+
+.postMeta {
+    font-size: 60%;
+}

@@ -1,0 +1,11 @@
+/* ==== THEME === */
+/* In this folder we define colours variables for the application */
+
+/* === Base colour scheme for application === */
+@import url(./theme.css);
+
+/* === Override colours if dark mode active on client === */
+@import url(./theme.dark.css) (prefers-color-scheme: dark);
+
+/* === Override colours when printing === */
+@import url(./theme.print.css) print;

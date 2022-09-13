@@ -1,0 +1,16 @@
+version = 0.1
+
+extensions = ['chomp@0.1:jspm']
+
+# Chomp itself uses a local npm version of @jspm/generator
+# This will automatically install that for us as necessary
+# (saving running a manual npm install)
+[template-options.npm]
+auto-install = true
+
+[[task]]
+target = 'importmap.json'
+deps = ['main.ts']
+template = 'jspm'
+[task.template-options]
+env = ['deno']

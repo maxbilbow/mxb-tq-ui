@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/QuestionSearchResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "./QuestionSearchResource.json"
+      }
+    },
+    "links": {
+      "$ref": "./JsonApiLinks.json"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ],
+  "additionalProperties": false
+}

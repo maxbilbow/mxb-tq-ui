@@ -1,0 +1,20 @@
+/* === Helper classes for full screen devices ==== */
+.safeAreaLeft {
+    padding-left: env(safe-area-inset-left) !important;
+}
+
+.safeAreaRight {
+    padding-right: env(safe-area-inset-right) !important;
+}
+
+.safeAreaTop {
+    padding-top: env(safe-area-inset-left) !important;
+}
+
+.safeAreaBottom {
+    padding-bottom: env(safe-area-inset-bottom) !important;
+}
+
+footer>*:last-child {
+    padding-bottom: env(safe-area-inset-bottom) !important;
+}

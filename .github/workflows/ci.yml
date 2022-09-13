@@ -1,0 +1,105 @@
+name: CI
+
+# Only trigger, when the build workflow succeeded
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up repo
+        uses: actions/checkout@v2
+
+      - name: Set up Deno
+        uses: denolib/setup-deno@v2
+        with:
+          deno-version: v1.21.x
+
+      - name: Install NPM deps and generate code
+        run: deno task build
+
+      - name: Lint Deno API
+        run: deno task lint-api
+
+      - name: Lint SPA code
+        run: deno task lint-spa
+  test_api:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Set up repo
+        uses: actions/checkout@v2
+
+      - name: Set up Deno
+        uses: denolib/setup-deno@v2
+        with:
+          deno-version: v1.21.x
+
+      - name: Install lcov
+        run: sudo apt-get install -y lcov
+
+      - name: Install NPM deps and generate code
+        run: deno task build
+
+      - name: Cache Dependencies
+        run: deno cache --config deno.json main.ts
+
+      - name: Run Tests with Coverage
+        id: run_tests
+        run: ci/test-api.sh
+
+      - name: Fail Line Coverage
+        if: ${{ steps.run_tests.outputs.lines == '' || steps.run_tests.outputs.lines < 90}}
+        run: |
+          echo Line coverage is insufficient: ${{ steps.run_tests.outputs.lines }}
+          exit 1
+
+      - name: Fail Function Coverage
+        if: ${{ steps.run_tests.outputs.functions == '' || steps.run_tests.outputs.functions < 90}}
+        run: |
+          echo Function coverage is insufficient: ${{ steps.run_tests.outputs.functions }}
+          exit 1
+
+      - name: Coverage is OK
+        run: |
+          echo Line coverage: ${{ steps.run_tests.outputs.lines }}
+          echo Function coverage: ${{ steps.run_tests.outputs.functions }}
+          echo OK!
+
+  test_ui:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Set up repo
+        uses: actions/checkout@v2
+
+      - name: Set up Deno
+        uses: denolib/setup-deno@v2
+        with:
+          deno-version: v1.21.x
+
+      - name: Install NPM deps and generate code
+        run: deno task build
+
+      - name: Run UI Tests
+        run: |
+          echo "Installing Puppeteer"
+          PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@9.0.2/install.ts
+          echo "Running UI Tests"
+          deno test api/test/ui/ --allow-all --unstable --import-map importmap.json
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: [test_api, test_ui]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}

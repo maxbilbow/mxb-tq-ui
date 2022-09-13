@@ -1,0 +1,6 @@
+/node_modules
+/js/**/*.js
+/js/**/*.map
+/generated
+/service-worker.js*
+/workers/precache.json

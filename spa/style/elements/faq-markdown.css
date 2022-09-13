@@ -1,0 +1,46 @@
+.faqMarkdownBody {
+    overflow: auto;
+    background-color: var(--colorSurface);
+    color: var(--colorOnSurface);
+}
+
+.faqMarkdownBody h1,
+.faqMarkdownBody h2,
+.faqMarkdownBody h3,
+.faqMarkdownBody h4,
+.faqMarkdownBody h5 {
+    color: var(--colorPrimary);
+}
+
+.faqMarkdownBody p {
+    word-wrap: normal;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-size: 90%;
+}
+
+.faqMarkdownBody table {
+    margin: auto;
+    width: 100%;
+    font-size: 80%;
+    border-collapse: collapse;
+    border: 1px var(--colorSecondaryVariant) dashed;
+    background-color: var(--colorPrimaryVariant);
+    color: var(--colorOnPrimary);
+}
+
+.faqMarkdownBody table td,
+.faqMarkdownBody table th {
+    border-collapse: collapse;
+    border: 1px var(--colorSecondaryVariant) dashed;
+    border-left: none;
+    padding: .5em;
+}
+
+
+.faqMarkdownBody pre {
+    overflow-x: auto;
+    background-color: var(--inputBackground);
+    color: var(--inputForeground);
+    font-family: monospace;
+}

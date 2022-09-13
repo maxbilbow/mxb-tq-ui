@@ -1,0 +1,26 @@
+#! /bin/bash
+remote="$1"
+
+# Only push to heroku if on master branch
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+if [[ "$BRANCH" != "main" ]]; then
+    echo 'Not master. Will not push to heroko main'
+    exit 0
+fi
+
+# Prevent recusion
+if [ "$remote" = "heroku" ]; then
+    echo "Pre-push to heroku detected"
+    exit 0
+fi
+
+# Check that heroku is installed
+if ! command -v heroku &> /dev/null
+then
+    echo "heroku could not be found. Deployment not possible."
+    exit 0
+fi
+
+echo "Pushing to heroku main"
+# No longer doing the following as it is now handled with git workflows
+# git push heroku main

@@ -1,0 +1,7 @@
+:root {
+    --articleMaxWidth: 600px;
+    --questionHeaderImageMaxSize: 300px;
+    --headerHeight: 52px;
+
+    --footerHeight: 40px;
+}

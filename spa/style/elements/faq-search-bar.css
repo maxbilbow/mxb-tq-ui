@@ -1,0 +1,65 @@
+faq-search-bar {
+    flex: 2 1;
+    display: flex;
+}
+
+faq-search-bar .faqSearchBar__searchBtn {
+    border: none;
+    box-shadow: none;
+    margin: .2em;
+    padding: .5em;
+}
+
+.faqSearchBar__container {
+    background-color: var(--inputBackground);
+    color: var(--inputForeground);
+    border-radius: 1em;
+}
+
+.faqSearchBar__input,
+.faqSearchBar__clearBtn {
+    background-color: unset;
+    color: unset;
+}
+
+.faqSearchBar__input {
+    margin: 0.5em;
+}
+
+.faqSearchBar__clearBtn:hover {
+    background-color: unset;
+    color: unset;
+}
+
+.faqSearchBar__input:focus {
+    outline: none;
+    border-bottom: 1px dashed;
+
+}
+
+.faqSearchBar__container:focus {
+    outline-style: dashed;
+    outline-width: 2px;
+    outline-color: var(--colorPrimary);
+    border-bottom: 2px dashed;
+}
+
+.faqSearchBar__container.faqSearchBar__container--empty {}
+
+.faqSearchBar__container.faqSearchBar__container--notEmpty {}
+
+.faqSearchBar__container {
+    flex: auto;
+    display: flex;
+}
+
+.faqSearchBar__input {
+    flex: auto;
+    border: none
+}
+
+.faqSearchBar__clearBtn {
+    margin: auto;
+    border: unset;
+    box-shadow: unset;
+}

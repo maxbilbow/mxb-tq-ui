@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/QuestionStats",
+  "type": "object",
+  "properties": {
+    "answerCount": {
+      "type": "integer"
+    },
+    "resolutionId": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "answerCount"
+  ],
+  "additionalProperties": false
+}

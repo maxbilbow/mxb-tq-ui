@@ -1,0 +1,39 @@
+/* Define styles for login and registration view */
+
+.loginForm {
+    display: grid;
+    font-size: clamp(1.5em, 2vw, 2em);
+}
+
+.loginForm .faqLogo {
+    contain: content;
+    margin: auto;
+    width: fit-content;
+}
+
+.loginForm form {
+    margin: auto;
+}
+
+.faqLogo>img {
+    object-fit: cover;
+    max-width: 100%;
+    width: 100%;
+}
+
+.faqLogo {
+    display: none;
+}
+
+@media only screen and (orientation: landscape),
+(min-width: 700px) {
+    .loginForm {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        grid-gap: 10px;
+    }
+
+    .faqLogo {
+        display: block;
+    }
+}

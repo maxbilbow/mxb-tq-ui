@@ -1,0 +1,8 @@
+spa/uploads/*.jpeg
+spa/uploads/*.jpg
+spa/uploads/*.png
+/node_modules
+**/.DS_Store
+**/generated
+/reports
+/.tmp

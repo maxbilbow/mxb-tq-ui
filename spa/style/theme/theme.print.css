@@ -1,0 +1,62 @@
+/* ========= THEME ========== */
+:root {
+    /* brand colours */
+    --colorPrimary: #A0BDCB;
+    /* BG */
+    --colorPrimaryVariant: white;
+    /* BG */
+    --colorOnPrimary: black;
+    /* FG */
+    --colorSecondary: #eee;
+    /* BG */
+    --colorSecondaryVariant: white;
+    /* BG */
+    --colorOnSecondary: black;
+    /* FG */
+    /* interface colours */
+    --colorBackground: none;
+    /* BG */
+    --colorOnBackground: black;
+    /* FG */
+    --colorSurface: none;
+    /* BG */
+    --colorOnSurface: black;
+    /* FG */
+    --colorError: pink;
+    /* BG */
+    --colorOnError: black;
+
+    /* FG */
+    --colorInfo: cyan;
+    /* BG */
+    --colorOnInfo: black;
+
+    /* FG */
+    --colorWarn: yellow;
+    /* BG */
+    --colorOnWarn: black;
+
+    /* FG */
+    --colorSuccess: teal;
+    /* BG */
+    --colorOnSuccess: black;
+
+
+    --dropshadow: none;
+
+    --inputBackground: #EDEDED;
+
+    --inputForeground: #333;
+
+    --imageOverlayBackground: rgba(255, 255, 255, 0.8);
+
+    --imageOverlayText: #333;
+
+    --colorDanger: red;
+    --colorOnDanger: white;
+}
+
+@font-face {
+    font-family: droid-sans;
+    src: url(DroidSans.ttf) format('truetype');
+}

@@ -1,0 +1,23 @@
+/* ==== LAYOUT === */
+/* In this folder we have styling for position and scale of elements */
+
+/* ==== Layout size constants ==== */
+@import url(./min.css);
+/* ==== Overrides for mobile devices ==== */
+@import url(./mobile.css) (pointer: coarse);
+/* ==== Overrides for larger screens ==== */
+@import url(./1024.css) (min-width: 1024px);
+@import url(./2000.css) (min-width: 2000px);
+
+/* ==== Position & Styling of main page elements ==== */
+@import url(./main.css);
+@import url(./header.css);
+@import url(./footer.css);
+
+@import url(./forms.css);
+
+/* 
+    Additional layout styles and overrides for touch screen devices 
+    that may have title safe areas 
+*/
+@import url(./safe-area.css) (pointer: coarse);

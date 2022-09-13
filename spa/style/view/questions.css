@@ -1,0 +1,124 @@
+/* Define styles for question view */
+
+@media only screen and (orientation: landscape) {
+    .question {
+        display: grid;
+        grid-template-columns: 5fr 2fr;
+        grid-template-areas:
+            'body smry'
+            'body actn'
+            'meta meta';
+        grid-gap: 10px;
+    }
+}
+
+@media only screen and (orientation: portrait) {
+    .question {
+        display: grid;
+        grid-template-columns: 5fr 3fr;
+        grid-template-areas:
+            'smry smry'
+            'body body'
+            'actn actn'
+            'meta meta';
+        grid-gap: 10px;
+    }
+}
+
+#question-summary {
+    margin: 0;
+    grid-area: smry;
+}
+
+#question-summary figure {
+    margin: auto;
+    contain: content;
+    width: fit-content;
+}
+
+#question-summary span {
+    padding: .5em;
+    display: block;
+}
+
+#question-summary img {
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+}
+
+#question-summary figcaption {
+    width: auto;
+    background-color: var(--colorPrimary);
+    color: var(--colorOnPrimary);
+    overflow: auto;
+}
+
+#question-summary.noImage,
+#question-summary figcaption {
+    overflow: hidden;
+    margin: auto;
+    contain: content;
+    width: 100%;
+}
+
+#question-summary span {
+    font-family: droid-sans;
+    text-align: justify;
+    word-break: break-word;
+    margin: 0;
+    padding: 5px;
+    font-size: 90%;
+    font-style: italic;
+}
+
+#question-body {
+    grid-area: body;
+}
+
+#question-actions {
+    grid-area: actn;
+}
+
+#question-actions button {
+    background-color: inherit;
+    color: inherit;
+    box-shadow: none;
+}
+
+#question-actions button:hover {
+    background-color: var(--colorSecondary);
+    color: var(--colorOnSecondary);
+}
+
+#question-meta {
+    grid-area: meta;
+}
+
+.answerListItem {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "status body"
+        "status meta";
+
+}
+
+.answerListItem>div {
+    padding: 1em;
+}
+
+.answerListItem__body {
+    grid-area: body;
+
+}
+
+.answerListItem__status {
+    grid-area: status;
+    text-align: center;
+    background-color: var(--colorBackground);
+    color: var(--colorOnBackground);
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/DeleteResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "description": "Details of the deleted resource",
+      "$ref": "./JsonApiResource.json"
+    }
+  },
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/media",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "fileType": {
+      "type": "string",
+      "enum": [
+        "IMAGE",
+        "VIDEO",
+        "AUDIO",
+        "DOCUMENT"
+      ]
+    }
+  },
+  "required": [
+    "id", "filetype"
+  ],
+  "additionalProperties": false
+}

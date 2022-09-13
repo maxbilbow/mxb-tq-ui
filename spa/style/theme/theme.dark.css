@@ -1,0 +1,38 @@
+/* ========= THEME ========== */
+:root {
+     /* colour palette with names based on Material Design */
+    /* https://material.io/components */
+    /* https://saruwakakun.com/en/material-color */
+    /* brand colours */
+    --colorPrimary: #607D8B;
+    /* BG */
+    --colorPrimaryVariant: #455A64;
+    /* BG */
+    --colorOnPrimary: lightgray;
+    /* FG */
+    --colorSecondary: #FDD835;
+    /* BG */
+    --colorSecondaryVariant: #A6B6BE;
+    /* BG */
+    --colorOnSecondary: white;
+    /* FG */
+    /* interface colours */
+    --colorBackground: #333;
+    /* BG */
+    --colorOnBackground: #EDEDED;
+    /* FG */
+    --colorSurface: #212121;
+    /* BG */
+    --colorOnSurface: white;
+    /* FG */
+    --colorError: pink;
+    /* BG */
+    --colorOnError: red;
+    /* FG */
+
+    --dropshadow: #333;
+
+    --inputBackground: #333;
+
+    --inputForeground: white;
+}

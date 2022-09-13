@@ -1,0 +1,34 @@
+{
+    "deno.enable": false,
+    "eslint.enable": true,
+    "files.associations": {
+        "*.tpl": "html"
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "js/**/*.js": true,
+        "js/**/*.js.map": true,
+        "service-worker.js*": true,
+        "node_modules": true
+    },
+    "explorer.experimental.fileNesting.patterns": {
+        "*.ts": "${capture}.js, ${capture}.tpl, ${capture}.*.tpl, tsconfig.${capture}.json",
+        "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+        "*.jsx": "${capture}.js",
+        "*.tsx": "${capture}.ts",
+        "tsconfig.json": "tsconfig.*.json",
+        "package.json": "package-lock.json, yarn.lock, .gitignore, tsconfig.json, .eslintrc",
+        "index.html": "*.ico, *.ts, *.webmanifest",
+    },
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "javascript.preferences.importModuleSpecifierEnding": "js",
+    "typescript.preferences.importModuleSpecifierEnding": "js"
+}

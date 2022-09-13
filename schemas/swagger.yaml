@@ -1,0 +1,605 @@
+openapi: 3.0.0
+info:
+  title: FAQ API
+  description: "API for FAQ application developed at Coventry University; based on the API developed for 7052 (Mobile App Development)"
+  version: 1.0.0
+  contact:
+    name: Max Bilbow
+    email: bilbowm@coventry.ac.uk
+    url: https://maxbilbow.com
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Base URL of the FAQ API
+  - url: https://pelicanrival-arrowvertigo-8080.codio-box.uk/api/v1
+    description: Remote codio API Server
+security:
+  - BearerAuth: []
+tags:
+  - name: Users
+  - name: Authentication
+  - name: Questions
+  - name: Answers
+  - name: Media
+paths:
+  /users:
+    post:
+      security: []
+      summary: Create a new user
+      description: Username and password are validated and added to the database\nPasswords are encrypted.
+      tags:
+        - Users
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: ./UserRegistrationRequest.json
+            examples:
+              Valid:
+                summary: Create a valid user
+                description: Change the username and password as required
+                value:
+                  username: "user42"
+                  password: "p455w0rd"
+              InvalidPassword:
+                summary: Password is too short
+                value:
+                  username: "user4"
+                  password: ""
+              Restricted:
+                summary: Special username is restricted
+                value:
+                  username: "anonymous"
+                  password: "p455w0rd"
+      responses:
+        "201": # status code
+          description: User has been created
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: ./UserResponse.json
+              examples:
+                Valid:
+                  summary: A user was created
+                  description: "Currently users are not automatically logged in. This would require an additional call to /auth/login"
+                  value:
+                    authenticated: false
+        "406":
+          description: User cannot be created. Reason returned as string
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+              examples:
+                InvalidPassword:
+                  summary: Invalid username password
+                  value:
+                    errors:
+                      - id: 0
+                        title: UserValidationError
+                        detail: A username is required
+                        status: 406
+                      - id: 0
+                        title: UserValidationError
+                        detail: A password is required
+                        status: 406
+                UserAlreadyExists:
+                  summary: User already exists
+                  value:
+                    errors:
+                      - id: 0
+                        title: UserValidationError
+                        detail: Duplicate entry 'user42' for key 'username'
+                        status: 406
+                      - id: 0
+                        title: MySqlException
+                        detail: "Error 1062 (23000): Duplicate entry 'user42' for key 'username'"
+                        status: 500
+    get:
+      tags:
+        - Authentication
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "202": # status code
+          description: Login
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./UserResponse.json"
+        "403":
+          description: User credential invalid
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+              example:
+                name: Forbidden
+                reason: Credentials are invalid
+  /questions:
+    get:
+      security: []
+      tags:
+        - Questions
+      summary: Returns a list of questions based on an optional query
+      description: "A limit must be provided since the total number of questions is expected to grow extremely large\n\nQuestions are returned in reverse order, with the newest at the top, and can be filtered by title."
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: A list of questions
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: ./QuestionSearchResponse.json
+    post:
+      tags:
+        - Questions
+      summary: Add a new question
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: ./QuestionPostRequest.json
+
+      responses:
+        "201": # status code
+          description: The newly created question
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: ./QuestionResponse.json
+        "404":
+          description: Question does not exist
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+  /questions/{id}:
+    get:
+      security: []
+      tags:
+        - Questions
+      summary: Returns a specific question object
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: A list of questions
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: ./QuestionResponse.json
+
+        "404":
+          description: Question does not exist
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+    put:
+      tags:
+        - Questions
+      summary: Update a question
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: ./QuestionPutRequest.json
+      responses:
+        "202": # status code
+          description: The updated question
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: ./QuestionResponse.json
+
+        "404":
+          description: Question does not exist and so cannot be updated
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+        "401":
+          description: Not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+
+    patch:
+      tags:
+        - Questions
+      summary: Mark question as resolved
+      description: If another answer was already marked as correct, it will be replaced by the new answer.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: resolved
+          in: query
+          required: true
+          schema:
+            type: boolean
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: ./QuestionPatchRequest.json
+      responses:
+        "202": # status code
+          description: The updated question
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: ./QuestionResponse.json
+
+        "404":
+          description: Question does not exist and so cannot be updated
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+        "401":
+          description: Not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+    delete:
+      tags:
+        - Questions
+      summary: Deletes a specific question
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "202": # status code
+          description: Question was deleted
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: ./DeleteResponse.json
+
+        "404":
+          description: Question does not exist and so cannot be deleted
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+        "401":
+          description: Not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+  /questions/{question_id}/answers:
+    get:
+      security: []
+      tags:
+        - Answers
+      summary: Returns a list of answers for a given question
+      parameters:
+        - name: question_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: A list of answers
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: ./AnswerSearchResponse.json
+        "400":
+          description: Bad request
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+    post:
+      tags:
+        - Answers
+      summary: Add response to a question
+      parameters:
+        - name: question_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: ./AnswerPostRequest.json
+      responses:
+        "201": # status code
+          description: Answer created
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: ./AnswerResponse.json
+
+        "400":
+          description: Bad request
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+        "404":
+          description: Question does not exist
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+        "401":
+          description: Not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+  /questions/{question_id}/answers/{answer_id}:
+    get:
+      security: []
+      tags:
+        - Answers
+      summary: Returns a specific answer object
+      parameters:
+        - name: question_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: answer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: A list of questions
+          content:
+            application/vnd.api+json:
+              schema:
+                properties:
+                  data:
+                    $ref: ./Answer.json
+
+        "404":
+          description: Answer does not exist for question
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+        "400":
+          description: Bad request
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+    put:
+      tags:
+        - Answers
+      summary: Update a question
+      parameters:
+        - name: question_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: answer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: ./AnswerPutRequest.json
+      responses:
+        "202": # status code
+          description: Changes accepted
+          content:
+            application/vnd.api+json:
+              schema:
+                properties:
+                  data:
+                    $ref: ./Answer.json
+
+        "404":
+          description: Answer does not exist
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+        "400":
+          description: Bad request
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+        "401":
+          description: Not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+    delete:
+      tags:
+        - Answers
+      summary: Deletes a specific question
+      parameters:
+        - name: question_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: answer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204": # status code
+          description: Question was deleted
+        "404":
+          description: Question does not exist
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+        "400":
+          description: Bad request
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+        "401":
+          description: Not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+  /images:
+    post:
+      tags:
+        - Media
+      summary: Upload Image
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "201":
+          description: Image was stored as png and thumbnails created
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: ./Media.json
+
+        "415":
+          description: File format issue
+        "400":
+          description: Bad request
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+  /images/{id}:
+    get:
+      summary: Download Image
+      servers:
+        - url: /api
+        - url: /api/v2
+          description: First introduced in v2
+
+      security: []
+      tags:
+        - Media
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: size
+          in: query
+          description: Flag denotes request of thumbnail version
+          required: false
+          schema:
+            enum:
+              - thumb
+              - header
+              - large
+      responses:
+        "200":
+          description: Returns image
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        "404":
+          description: Image not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+    delete:
+      summary: Delete an Image
+      tags:
+        - Media
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "201":
+          description: Image was deleted
+          content:
+            text/plain:
+              schema:
+                type: string
+        "400":
+          description: Bad request
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: "./ErrorResponse.json"
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

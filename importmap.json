@@ -1,0 +1,22 @@
+{
+  "scopes": {
+    "./": {
+      "jsonschema": "https://ga.jspm.io/npm:jsonschema@1.4.0/lib/index.js"
+    },
+    "https://ga.jspm.io/": {
+      "url": "https://ga.jspm.io/npm:@jspm/core@2.0.0-beta.21/nodelibs/deno/url.ts"
+    }
+  },
+  "imports": {
+    "oak": "https://deno.land/x/oak@v10.5.1/mod.ts",
+    "mysql": "https://deno.land/x/mysql@v2.10.2/mod.ts",
+    "markdown": "https://deno.land/x/markdown@v2.0.0/mod.ts",
+    "std/hash/md5": "https://deno.land/std@0.136.0/hash/md5.ts",
+    "std/flags":"https://deno.land/std@0.136.0/flags/mod.ts",
+    "bcrypt": "https://deno.land/x/bcrypt@v0.3.0/mod.ts",
+    "fs/exists": "https://deno.land/std@0.104.0/fs/exists.ts",
+    "bb64": "https://deno.land/x/bb64@1.1.0/mod.ts",
+    "openapi": "https://deno.land/x/openapi@0.1.0/mod.ts",
+    "log": "https://deno.land/std@0.136.0/log/mod.ts"
+  }
+}

@@ -1,0 +1,60 @@
+/* Define styles for question-edit view */
+
+@media only screen and (min-width: 1024px) {
+    #edit-question-form {
+        display: grid;
+        grid-template-columns: 5fr 3fr;
+        grid-template-areas:
+            'ttle imge'
+            'smry imge'
+            'body body'
+            'actn actn';
+        grid-gap: 10px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    #edit-question-form {
+        display: block;
+    }
+}
+
+#edit-question-title {
+    grid-area: ttle;
+}
+
+#edit-question-summary {
+    grid-area: smry;
+}
+#edit-question-image {
+    margin: 0;
+    grid-area: imge;
+}
+
+#edit-question-image img {
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+
+}
+
+#edit-question-body {
+    grid-area: body;
+}
+
+#edit-question-actions {
+    grid-area: actn;
+
+}
+
+#edit-question-actions button {
+    background-color: inherit;
+    color: inherit;
+    box-shadow: none;
+}
+
+#edit-question-actions button:hover {
+    background-color: var(--colorSecondary);
+    color: var(--colorOnSecondary);
+}

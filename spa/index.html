@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf8" />
+	<meta name="viewport" content="width=device-width" , initial-scale="1.0" />
+	<meta name="theme-color" content="#607D8B" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="DnSO" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+	<title>DnSO</title>
+
+	<!-- iOS icons-->
+	<link rel="apple-touch-startup-image" href="/images/1024.png" />
+	<link rel="apple-touch-icon" href="/images/196.png" />
+	<link rel="shortcut icon" href="/images/1024.png" type="image/x-icon" />
+
+	<!-- iOS Splash Screen -->
+	<link href="/images/splash/iphone5_splash.png"
+		media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/splash/iphone6_splash.png"
+		media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/splash/iphoneplus_splash.png"
+		media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/splash/iphonex_splash.png"
+		media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/splash/iphonexr_splash.png"
+		media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/splash/iphonexsmax_splash.png"
+		media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/splash/ipad_splash.png"
+		media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/splash/ipadpro1_splash.png"
+		media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/splash/ipadpro3_splash.png"
+		media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/splash/ipadpro2_splash.png"
+		media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+		rel="apple-touch-startup-image" />
+
+	<!-- Free 3rd Party font icon library: https://icons8.com/line-awesome  -->
+	<link type="text/css" rel="stylesheet" href="/style/icons/css/line-awesome.min.css" />
+
+	<!-- Main CSS -->
+	<link type="text/css" rel="stylesheet" href="/style/main.css" />
+
+	<!-- PWA Manifest-->
+	<link rel="manifest" href="/manifest.webmanifest" />
+
+	<script type="module" src="/js/main.js" defer></script>
+</head>
+
+<body>
+
+	<header id="faq-app-header" is="faq-app-header" class="appHeader">
+		<!-- Custom Element: Toggleabl menu icon -->
+		<faq-toggle id='faq-user-drawer-toggle' for="#faq-user-drawer">
+			<i class="las la-user"></i>
+
+			<!-- Custom Element (Navigation) -->
+			<faq-nav-bar id="faq-user-drawer" class="hidden safeAreaRight">
+				<nav>
+					<ul>
+						<li><a href="#login" anonymous>Log in </a><i class="las la-sign-in-alt"></i></li>
+						<li><a href="#register" anonymous>Register </a><i class="las la-user-plus"></i></li>
+						<li><a href="#logout" protected>Log out </a><i class="las la-sign-out-alt"></i></li>
+					</ul>
+				</nav>
+			</faq-nav-bar>
+		</faq-toggle>
+
+		<!-- Custom element: back button -->
+		<faq-back-button id="faq-back-button">
+			<i class="las la-arrow-left"></i>
+		</faq-back-button>
+
+		<div id="faq-title-area">
+			<h1>DnSO</h1>
+		</div>
+
+
+	</header>
+
+	<main id="faq-app-content">
+		<article>
+		</article>
+	</main>
+	<footer id="faq-app-footer">
+		<!-- UI Notifications will be added here -->
+		<faq-notification id="faq-api-offline-message" severity="warn" class="hidden">
+			Server is offline. Some functionality may be restricted.
+		</faq-notification>
+		<!-- TODO: Put this credit in an about page -->
+		<!-- <p class="hidden">icons by <a href="https://icons8.com/line-awesome">Line Awesome</a></p> -->
+	</footer>
+</body>
+
+<!-- Custom HTML Route Elements are used to initialise SPA navigation -->
+<faq-route content-id="question-list" src="/js/view/question-list.js" no-back></faq-route>
+<faq-route route="question-list" src="/js/view/question-list.js" no-back></faq-route>
+<faq-route route="question/:id" src="/js/view/question.js"></faq-route>
+<faq-route route="new-question" src="/js/view/edit-question.js"></faq-route>
+<faq-route route="edit-question/:id" src="/js/view/edit-question.js"></faq-route>
+
+<!-- Custom HTML Route Elements with content will be converted to template elements -->
+<faq-route route="login" src="/js/view/login.js">
+	<section class="loginForm">
+		<div class="faqLogo">
+			<img class="faqLogo__image" src="/images/1024.png" />
+		</div>
+		<form name="login">
+			<p><label for="email">Username</label><br /><input type="text" name="user" placeholder="username"
+					autocapitalize="off" /></p>
+			<p><label for="pass">Password</label><br /><input type="password" name="pass" placeholder="password" /></p>
+			<p><button type="submit">Log in</button></p>
+		</form>
+	</section>
+</faq-route>
+<faq-route route="register" src="/js/view/register.js">
+	<section class="loginForm">
+		<div class="faqLogo">
+			<img class="faqLogo__image" src="/images/1024.png" />
+		</div>
+		<form name="register">
+			<p><label for="name">Username</label><br /><input type="text" name="user" placeholder="username"
+					autocapitalize="off" /></p>
+			<p><label for="pass">Password</label><br /><input type="password" name="pass" placeholder="password"
+					autocomplete="new-password" /></p>
+			<p><button type="submit">Create account</button></p>
+		</form>
+	</section>
+</faq-route>
+<faq-route route="logout" src="/js/view/logout.js">
+	<section>
+		<p>Do you want to log out?</p>
+		<p><button>OK</button><button>Cancel</button></p>
+	</section>
+</faq-route>
+
+</html>

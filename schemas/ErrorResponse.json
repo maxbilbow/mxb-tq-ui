@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/ErrorResponse",
+  "type": "object",
+  "properties": {
+    "errors": {
+      "type": "array",
+      "items": {
+        "type":"object",
+        "properties":{
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "status":{
+            "type": "string"
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "cause": {
+                "type": "integer"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required":["title", "detail", "status"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "errors"
+  ],
+  "examples": [
+    {
+      "errors": [
+        {
+          "id": 0,
+          "title": "ApiException",
+          "detail": "Duplicate entry 'user42' for key 'username'",
+          "status": 406,
+          "meta": {
+            "cause": 1
+          }
+        },
+        {
+          "id": 1,
+          "title": "MySqlException",
+          "detail": "Error 1062 (23000): Duplicate entry 'user42' for key 'username'",
+          "status": 500
+        }
+      ]
+    }
+  ]
+}

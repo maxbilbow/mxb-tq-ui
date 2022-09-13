@@ -1,0 +1,29 @@
+faq-call-to-action {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    margin: 0;
+    position: sticky;
+    bottom: 0;
+    right: 0;
+    padding-bottom: max(.5em, 1vw, env(safe-area-inset-bottom));
+    padding-right: min(.5em, 1vw, 1em);
+  
+    z-index: 9;
+}
+
+faq-call-to-action > button {
+    display: block;
+    border-radius: 100%;
+    box-shadow: 2px 2px 12px var(--dropshadow);
+    cursor: pointer;
+    aspect-ratio: 1 / 1;
+    padding: clamp(2em, 5vw, 2.2em);
+}
+
+faq-call-to-action > button>i {
+    margin: 0;
+    padding: 0;
+    font-size: xx-large;
+    aspect-ratio: 1 / 1;
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/QuestionSearchResource",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "./JsonApiResource.json",
+      "required": [
+        "id",
+        "type",
+        "links"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "$ref": "./QuestionSearchItem.json"
+        }
+      },
+      "required": [
+        "attributes"
+      ],
+      "additionalProperties": false
+    }
+  ],
+  "additionalProperties": false
+}

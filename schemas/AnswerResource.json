@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/AnswerResource",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "./JsonApiResource.json"
+    },
+    {
+      "type": "object",
+      "properties":{
+        "attributes": {
+          "$ref": "./Answer.json"
+        }
+      },
+      "additionalProperties": false
+    }
+  ],
+  "additionalProperties": false
+}

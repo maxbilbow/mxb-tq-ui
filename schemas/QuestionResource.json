@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/QuestionResource",
+  "allOf": [
+    {
+      "$ref": "./JsonApiResource.json",
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "$ref": "./Question.json"
+        },
+        "relationships": {
+          "type": "object",
+          "properties": {
+            "answers": {
+              "type": "object",
+              "properties": {
+                "links": {
+                  "$ref": "./JsonApiLinks.json"
+                },
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": "total",
+                  "additionalProperties": false
+                }
+              },
+              "required": ["links", "meta"],
+              "additionalProperties": false
+            }
+          },
+          "required": "answers",
+          "additionalProperties": false
+        },
+        "links": {
+          "$ref": "./JsonApiLinks.json"
+        }
+      },
+      "required": [
+        "attributes", "links", "meta", "relationships"
+      ],
+      "additionalProperties": false
+    }
+  ],
+  "additionalProperties": false
+}

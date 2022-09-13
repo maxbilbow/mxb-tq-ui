@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "WebWorker",
+            "ESNext"
+        ],
+        "target": "ES2021",
+        "sourceMap": true,
+        "skipDefaultLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        // "isolatedModules": true,
+        "strict": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "skipLibCheck": true,
+        "outDir": "../"
+    },
+    "compileOnSave": true,
+    "files": ["service-worker.ts"]
+}

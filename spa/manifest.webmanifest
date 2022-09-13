@@ -1,0 +1,83 @@
+{
+    "name": "Definitely not Stackoverflow",
+    "short-name": "DnSO",
+    "description": "TBD",
+    "dir": "ltr",
+    "lang": "en",
+    "icons": [
+        {
+            "src": "images/1024.png",
+            "sizes": "any",
+            "type":"image/png"
+        },
+        {
+            "src": "images/1024.png",
+            "sizes": "any",
+            "type":"image/png"
+        },
+        {
+            "src": "images/1024.png",
+            "sizes": "any",
+            "type":"image/png"
+        },
+        {
+            "src": "images/1024.png",
+            "sizes": "any",
+            "type":"image/png"
+        },
+        {
+            "src": "images/1024.png",
+            "sizes": "any",
+            "type":"image/png"
+        },
+        {
+            "src": "images/1024.png",
+            "sizes": "any",
+            "type":"image/png"
+        },
+        {
+            "src": "images/1024.png",
+            "sizes": "any",
+            "type":"image/png"
+        },
+        {
+            "src": "images/1024.png",
+            "sizes": "any",
+            "type":"image/png"
+        },
+        {
+            "src": "images/1024.png",
+            "sizes": "any",
+            "type":"image/png"
+        },
+    
+
+
+        
+        {
+            "src": "images/1024.png",
+            "sizes": "any",
+            "type":"image/png"
+        },
+        {
+            "src": "images/1024.png",
+            "sizes": "1024x1024",
+            "type":"image/png"
+        },
+        {
+            "src": "images/196.png",
+            "sizes": "196x196",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "display": "standalone",
+    "scope": "/",
+    "background_color": "#607D8B",
+    "theme_color": "#607D8B",
+    "start_url": "/",
+    "categories": [
+        "technology",
+        "web"
+    ]
+}

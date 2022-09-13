@@ -1,0 +1,12 @@
+faq-nav-bar {
+    z-index: 10;
+}
+
+faq-nav-bar ul {
+    padding-inline-start: 0;
+}
+faq-nav-bar ul>li {
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+}

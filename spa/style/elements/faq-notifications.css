@@ -1,0 +1,52 @@
+/* ========= MESSAGE ========== */
+
+footer#faq-app-footer {}
+
+/*
+ TODO: make this more modal like for larger screens
+*/
+.faqNotification {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    background-color: var(--colorPrimary);
+    /* padding: 1em; */
+    color: var(--colorOnPrimary);
+    font-size: 0.8em;
+    border-radius: 0.2em;
+    text-align: center;
+    z-index: 10;
+}
+
+.faqNotification>p,
+.faqNotification>span {
+    display: block;
+    margin-left: max(.5em, env(safe-area-inset-left));
+    margin-right: max(.5em, env(safe-area-inset-right));
+}
+
+.faqNotification--info {
+    background-color: var(--colorPrimary);
+    color: var(--colorOnPrimary);
+    z-index: 11;
+}
+
+.faqNotification--success {
+    background-color: var(--colorSuccess);
+    color: var(--colorOnSuccess);
+    z-index: 12;
+}
+
+.faqNotification--warn {
+    background-color: var(--colorWarn);
+    color: var(--colorOnWarn);
+    z-index: 13;
+
+}
+
+.faqNotification--error {
+    background-color: var(--colorError);
+    color: var(--colorOnError);
+    z-index: 134;
+}

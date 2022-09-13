@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/api/AnswerPostRequest",
+  "type": "object",
+  "properties": {
+    "data": {
+      "allOf": [
+        {
+          "$ref": "./JsonApiResource.json"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "attributes": {
+              "$ref": "./AnswerCreate.json"
+            }
+          },
+          "required": [
+            "attributes"
+          ],
+          "additionalProperties": false
+        }
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false
+}
